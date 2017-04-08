@@ -4,6 +4,6 @@ Ethereum/BTC rate watching utility; the backend is powered by Google Spreadsheet
 
 ## App
 
-The app is hosted in [gh-pages][gh-pages]
+The app is hosted using [gh-pages][gh-pages]
 
 [gh-pages]: https://jikkujose.github.io/rate_watch/
