@@ -1,11 +1,12 @@
 import React from 'react';
+import {Graph} from './Layout.js'
 
 export default class GoogleSpreadSheetGraph extends React.Component {
   render() {
     return(
-      <iframe
-        width={this.props.width || 620}
-        height={this.props.height || 400}
+      <Graph
+        width={this.props.width || 600}
+        height={this.props.height || 380}
         src={this.props.link}/>
     );
   }
