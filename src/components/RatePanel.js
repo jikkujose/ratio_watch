@@ -1,7 +1,8 @@
 import React from 'react';
 import {Panel} from './Styles.js'
+import loadRate from './loadRate.js'
 
-export default class RatePanel extends React.Component {
+class RatePanel extends React.Component {
   render() {
     let { from, to, rate } = this.props
 
@@ -12,3 +13,5 @@ export default class RatePanel extends React.Component {
     );
   }
 }
+
+export default loadRate()(RatePanel)
