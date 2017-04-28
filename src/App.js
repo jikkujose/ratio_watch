@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GoogleSpreadSheetGraph from './GoogleSpreadSheetGraph.js'
-import {Container} from './Layout.js'
+import {GraphContainer, Container} from './Layout.js'
+import RatePanel from './components/RatePanel.js'
 
 export default class App extends Component {
   render() {
@@ -9,8 +10,11 @@ export default class App extends Component {
 
     return (
       <Container>
-        <GoogleSpreadSheetGraph link={btc_eth_url} />
-        <GoogleSpreadSheetGraph link={eth_btc_url} />
+        <RatePanel from="BTC" to="ETH" rate={23.44} />
+        <GraphContainer>
+          <GoogleSpreadSheetGraph link={btc_eth_url} />
+          <GoogleSpreadSheetGraph link={eth_btc_url} />
+        </GraphContainer>
       </Container>
     );
   }
