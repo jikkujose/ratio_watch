@@ -17,7 +17,7 @@ export const Panel = styled.div.attrs({
   }
 `
 
-function RatePanel({ from, to, rate, error, handleClick }) {
+function RatePanel({ from, to, rate, error, handleClick, API }) {
   const isLoading = !!rate
   let message = isLoading ? `1 ${from} = ${rate} ${to}` : "Loading rate.."
 

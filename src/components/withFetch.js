@@ -8,22 +8,24 @@ export default function withFetch(Component) {
     }
 
     fetchRate = () => {
+      const { API } = this.props
+      const { from, to } = this.props
+      const api = new API(from, to)
+
       const isLoading = !this.state.rate
 
       if (!isLoading) {
-        this.setState(s => ({ rate: null }))
+        this.setState(s => ({ rate: null, error: null }))
       }
 
-      const { from, to } = this.props
-      const url = `https://shapeshift.io/rate/${from}_${to}`
+      const url = api.url(from, to)
 
-      fetch(url).then(r =>
-        r
-          .json()
-          .then(j =>
-            this.setState(s => ({ rate: j["rate"], error: j["error"] }))
-          )
-      )
+      fetch(url).then(r => r.json().then(json => api.extract(json, this)))
+    }
+
+    componentWillReceiveProps(nextProps) {
+      this.setState(s => ({ rate: null, error: null }))
+      this.fetchRate()
     }
 
     componentDidMount() {
