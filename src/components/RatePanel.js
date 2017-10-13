@@ -2,10 +2,19 @@ import React from "react"
 import styled from "styled-components"
 
 import withFetch from "./withFetch.js"
+import { color } from "utils"
+
+const theme = color(38, 86, 166)
 
 export const Panel = styled.div.attrs({
-  className: "code f4 pa3 bg-black-30 hover-bg-black-20 pointer",
-})``
+  className: "code f4 pa3 pointer bb b--black-10",
+})`
+  background: ${theme(10)};
+
+  &:hover {
+    background: ${theme(15)};
+  }
+`
 
 function RatePanel({ from, to, rate, handleClick }) {
   const isLoading = !!rate
