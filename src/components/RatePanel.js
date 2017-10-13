@@ -5,23 +5,28 @@ import withFetch from "./withFetch.js"
 import { color } from "utils"
 
 const theme = color(255, 212, 0)
+const red = color(255, 153, 153)
 
 export const Panel = styled.div.attrs({
-  className: "code f4 pa3 pointer bb b--black-10",
+  className: "code f5 b black-60 pa3 pointer bb b--black-10",
 })`
-  background: ${theme(10)};
+  background: ${props => (props.isError ? red(10) : theme(10))};
 
   &:hover {
-    background: ${theme(15)};
+    background: ${props => (props.isError ? red(15) : theme(15))};
   }
 `
 
-function RatePanel({ from, to, rate, handleClick }) {
+function RatePanel({ from, to, rate, error, handleClick }) {
   const isLoading = !!rate
-  const message = isLoading ? `1 ${from} = ${rate} ${to}` : "Loading rate.."
+  let message = isLoading ? `1 ${from} = ${rate} ${to}` : "Loading rate.."
+
+  if (!!error) {
+    message = `Error: ${error}`
+  }
 
   return (
-    <Panel onClick={handleClick}>
+    <Panel onClick={handleClick} isError={!!error}>
       {message}
     </Panel>
   )

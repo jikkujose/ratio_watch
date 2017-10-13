@@ -5,6 +5,7 @@ const pairs = [
   { from: "BTC", to: "ETC" },
   { from: "BTC", to: "BCH" },
   { from: "ETH", to: "ETC" },
+  { from: "ETH", to: "ERROR" },
 ]
 
 export default pairs

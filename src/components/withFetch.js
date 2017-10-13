@@ -4,6 +4,7 @@ export default function withFetch(Component) {
   return class WrappedComponent extends React.Component {
     state = {
       rate: null,
+      error: null,
     }
 
     fetchRate = () => {
@@ -17,7 +18,11 @@ export default function withFetch(Component) {
       const url = `https://shapeshift.io/rate/${from}_${to}`
 
       fetch(url).then(r =>
-        r.json().then(j => this.setState(s => ({ rate: j["rate"] })))
+        r
+          .json()
+          .then(j =>
+            this.setState(s => ({ rate: j["rate"], error: j["error"] }))
+          )
       )
     }
 
@@ -29,7 +34,7 @@ export default function withFetch(Component) {
       return (
         <Component
           {...this.props}
-          rate={this.state.rate}
+          {...this.state}
           handleClick={this.fetchRate}
         />
       )
