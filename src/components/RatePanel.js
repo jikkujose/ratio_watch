@@ -4,7 +4,7 @@ import styled from "styled-components"
 import withFetch from "./withFetch.js"
 import { color } from "utils"
 
-const theme = color(38, 86, 166)
+const theme = color(255, 212, 0)
 
 export const Panel = styled.div.attrs({
   className: "code f4 pa3 pointer bb b--black-10",
