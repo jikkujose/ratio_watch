@@ -2,11 +2,9 @@ import React from "react"
 import styled from "styled-components"
 import RatePanel from "./components/RatePanel.js"
 import AddForm from "./components/AddForm"
-import { ShapeShift, CryptoCompare, color } from "utils"
+import { ShapeShift, CryptoCompare } from "utils"
 
 import { pairs } from "data"
-
-const theme = color(255, 212, 0)
 
 const Wrapper = styled.div.attrs({
   className: "flex justify-center",
@@ -62,8 +60,7 @@ export default class App extends React.Component {
     const { APIs, selectedAPIIndex, pairs, viewMode } = this.state
     const API = APIs[selectedAPIIndex]
     const showControls = true
-
-    console.log(pairs)
+    console.log(API.name)
 
     return (
       <Wrapper>
