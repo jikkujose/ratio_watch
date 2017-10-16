@@ -22,7 +22,7 @@ const Input = styled.input.attrs({
 })``
 
 const Submit = styled.input.attrs({
-  className: "w-100 br3 pa2 f3 code bn bg-black-10",
+  className: "w-100 br3 pa2 f3 code bn bg-black-10 pointer",
   type: "button",
 })``
 
@@ -46,7 +46,7 @@ export default class AddForm extends React.Component {
 
   handleChange = field => e => {
     e.persist()
-    this.setState(s => ({ [field]: e.target.value }))
+    this.setState(s => ({ [field]: e.target.value.toUpperCase() }))
   }
 
   submit = () => this.props.handleSubmit(this.state.from, this.state.to)

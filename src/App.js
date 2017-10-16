@@ -49,7 +49,7 @@ export default class App extends React.Component {
     this.setState(s => ({ selectedAPIIndex: nextIndex }))
   }
 
-  switchToAddMode = () => this.setState(s => ({ viewMode: false }))
+  toggleMode = () => this.setState(s => ({ viewMode: !s.viewMode }))
 
   addPair = (from, to) => {
     this.setState(s => ({
@@ -79,7 +79,9 @@ export default class App extends React.Component {
             {showControls &&
               <div>
                 {false && <Link onClick={this.switchAPIs}>Switch API</Link>}
-                <Link onClick={this.switchToAddMode}>Add</Link>
+                <Link onClick={this.toggleMode}>
+                  {viewMode ? "Add" : "Cancel"}
+                </Link>
               </div>}
           </Footer>
         </Container>
