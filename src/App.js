@@ -1,9 +1,12 @@
 import React from "react"
 import styled from "styled-components"
 import RatePanel from "./components/RatePanel.js"
-import { ShapeShift, CryptoCompare } from "utils"
+import AddForm from "./components/AddForm"
+import { ShapeShift, CryptoCompare, color } from "utils"
 
 import { pairs } from "data"
+
+const theme = color(255, 212, 0)
 
 const Wrapper = styled.div.attrs({
   className: "flex justify-center",
@@ -31,8 +34,10 @@ const twitterProfile = "https://twitter.com/big_org"
 
 export default class App extends React.Component {
   state = {
+    pairs,
+    viewMode: true,
     APIs: [ShapeShift, CryptoCompare],
-    selectedAPIIndex: 0,
+    selectedAPIIndex: 1,
   }
 
   switchAPIs = () => {
@@ -44,22 +49,38 @@ export default class App extends React.Component {
     this.setState(s => ({ selectedAPIIndex: nextIndex }))
   }
 
+  switchToAddMode = () => this.setState(s => ({ viewMode: false }))
+
+  addPair = (from, to) => {
+    this.setState(s => ({
+      pairs: s.pairs.concat({ from, to }),
+      viewMode: true,
+    }))
+  }
+
   render() {
-    const { APIs, selectedAPIIndex } = this.state
+    const { APIs, selectedAPIIndex, pairs, viewMode } = this.state
     const API = APIs[selectedAPIIndex]
+    const showControls = true
+
+    console.log(pairs)
 
     return (
       <Wrapper>
         <Container>
           <Header>Rate Watch</Header>
-          {pairs.map((pair, i) => <RatePanel key={i} {...pair} API={API} />)}
+          {viewMode
+            ? pairs.map((pair, i) => <RatePanel key={i} {...pair} API={API} />)
+            : <AddForm handleSubmit={this.addPair} />}
           <Footer>
             <div>
               <Link href={twitterProfile}>BIGOrg</Link> | API: {API.name}
             </div>
-            <div>
-              <Link onClick={this.switchAPIs}>Switch API</Link>
-            </div>
+            {showControls &&
+              <div>
+                {false && <Link onClick={this.switchAPIs}>Switch API</Link>}
+                <Link onClick={this.switchToAddMode}>Add</Link>
+              </div>}
           </Footer>
         </Container>
       </Wrapper>
