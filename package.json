@@ -15,7 +15,8 @@
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
-    "react-scripts": "1.0.14"
+    "react-scripts": "1.0.14",
+    "size-limit": "^0.11.6"
   },
   "scripts": {
     "start": "NODE_PATH=src/ react-scripts start",
