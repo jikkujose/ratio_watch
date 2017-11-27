@@ -8,15 +8,16 @@
   "author": "Jikku Jose <jikkujose@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "styled-components": "^2.2.1",
-    "tachyons": "^4.8.1"
+    "polished": "^1.9.0",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "styled-components": "^2.2.3",
+    "tachyons": "^4.9.0"
   },
   "devDependencies": {
-    "gh-pages": "^1.0.0",
-    "react-scripts": "1.0.14",
-    "size-limit": "^0.11.6"
+    "gh-pages": "^1.1.0",
+    "react-scripts": "1.0.17",
+    "size-limit": "^0.13.2"
   },
   "scripts": {
     "start": "NODE_PATH=src/ react-scripts start",
