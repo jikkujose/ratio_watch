@@ -12,19 +12,13 @@ const theme = {
   cc: lighten(0.3, "#58CA71"),
 }
 
-export const Panel = styled.div.attrs({
-  className: "code f5 b black-60 pa3 pointer bb b--black-10",
-})`
-  background: ${props => (props.isError ? red(10) : props.color)};
-
-  &:hover {
-    background: ${props => (props.isError ? red(15) : props.color)};
-  }
-`
-
 function RatePanel({ from, to, rate, error, handleClick, api, API }) {
   const isLoading = !!rate
-  let message = isLoading ? `1 ${from} = ${rate} ${to}` : "Loading rate.."
+  const roundedRate = rate && parseFloat(rate).toFixed(2)
+
+  let message = isLoading
+    ? `1 ${from} = ${roundedRate} ${to}`
+    : "Loading rate.."
 
   if (!!error) {
     message = `Error: ${error}`
@@ -38,3 +32,14 @@ function RatePanel({ from, to, rate, error, handleClick, api, API }) {
 }
 
 export default withFetch(RatePanel)
+
+export const Panel = styled.div.attrs({
+  className:
+    "code f4 f3-l b black-60 pv2 pv3-m pv3-l ph3 pointer bb b--black-10",
+})`
+  background: ${props => (props.isError ? red(10) : props.color)};
+
+  &:hover {
+    background: ${props => (props.isError ? red(15) : props.color)};
+  }
+`
