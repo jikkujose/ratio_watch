@@ -2,9 +2,9 @@ import React from "react"
 import styled from "styled-components"
 import RatePanel from "./components/RatePanel.js"
 import AddForm from "./components/AddForm"
-import { ShapeShift, CryptoCompare } from "utils"
+import { ShapeShift, CryptoCompare } from "./utils"
 
-import { pairs } from "data"
+import { pairs } from "./data"
 
 export default class App extends React.Component {
   state = {
@@ -29,16 +29,19 @@ export default class App extends React.Component {
     return (
       <Wrapper>
         <Container>
-          {viewMode
-            ? pairs.map((pair, i) =>
-                <RatePanel key={i} {...pair} API={APIs[pair.api]} />
-              )
-            : <AddForm handleSubmit={this.addPair} />}
+          {viewMode ? (
+            pairs.map((pair, i) => (
+              <RatePanel key={i} {...pair} API={APIs[pair.api]} />
+            ))
+          ) : (
+            <AddForm handleSubmit={this.addPair} />
+          )}
           <Footer>
-            {showControls &&
+            {showControls && (
               <Link onClick={this.toggleMode}>
                 {viewMode ? "Add" : "Cancel"}
-              </Link>}
+              </Link>
+            )}
           </Footer>
         </Container>
       </Wrapper>

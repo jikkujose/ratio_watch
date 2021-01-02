@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { lighten } from "polished"
 
 import withFetch from "./withFetch.js"
-import { color } from "utils"
+import { color } from "../utils"
 
 const red = color(255, 153, 153)
 

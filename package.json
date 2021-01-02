@@ -1,6 +1,6 @@
 {
   "name": "rate_watch",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Crypto price watcher",
   "main": "index.js",
   "homepage": "https://jikkujose.github.io/rate_watch",
@@ -8,16 +8,16 @@
   "author": "Jikku Jose <jikkujose@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "polished": "^1.9.0",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "styled-components": "^2.2.3",
+    "polished": "^4.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.0",
     "tachyons": "^4.9.0"
   },
   "devDependencies": {
-    "gh-pages": "^1.1.0",
-    "react-scripts": "1.0.17",
-    "size-limit": "^0.13.2"
+    "gh-pages": "^3.1.0",
+    "react-scripts": "4.0.1",
+    "size-limit": "^4.9.1"
   },
   "scripts": {
     "start": "NODE_PATH=src/ react-scripts start",
@@ -32,5 +32,17 @@
       "path": "build/static/js/main.70721bdc.js",
       "limit": "60 KB"
     }
-  ]
+  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

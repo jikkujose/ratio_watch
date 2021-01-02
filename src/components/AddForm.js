@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { color } from "utils"
+import { color } from "../utils"
 
 const theme = color(255, 212, 0)
 
@@ -29,7 +29,7 @@ const Submit = styled.input.attrs({
 const FieldSet = styled.div.attrs({
   className: "flex flex-column w-100 ph3",
 })`
-  max-width: 500px
+  max-width: 500px;
 `
 
 const FieldWrapper = styled.div.attrs({
