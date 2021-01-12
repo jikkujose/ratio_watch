@@ -1,6 +1,8 @@
 const pairs = [
   { from: "BTC", to: "USD", api: "cc" },
+  { from: "BTC", to: "INR", api: "cc" },
   { from: "ETH", to: "USD", api: "cc" },
+  { from: "ETH", to: "INR", api: "cc" },
   { from: "ETC", to: "USD", api: "cc" },
   { from: "ZEC", to: "USD", api: "cc" },
   { from: "USD", to: "ZCL", api: "cc" },
