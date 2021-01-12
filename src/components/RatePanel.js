@@ -12,9 +12,18 @@ const theme = {
   cc: lighten(0.3, "#58CA71"),
 }
 
-function RatePanel({ from, to, rate, error, handleClick, api, API }) {
+function RatePanel({
+  from,
+  to,
+  rate,
+  precision = 2,
+  error,
+  handleClick,
+  api,
+  API,
+}) {
   const isLoading = !!rate
-  const roundedRate = rate && parseFloat(rate).toFixed(2)
+  const roundedRate = rate && parseFloat(rate).toFixed(precision)
 
   let message = isLoading
     ? `1 ${from} = ${roundedRate} ${to}`
