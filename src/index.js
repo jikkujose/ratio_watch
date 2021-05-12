@@ -5,5 +5,7 @@ import { HookedApp } from "./HookedApp"
 import "tachyons"
 import registerServiceWorker from "./registerServiceWorker"
 
+console.log("v0.24")
+
 ReactDOM.render(<HookedApp />, document.getElementById("root"))
 registerServiceWorker()
