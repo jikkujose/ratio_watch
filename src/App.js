@@ -1,4 +1,5 @@
 import React from "react"
+import { useState } from "react"
 import styled from "styled-components"
 import RatePanel from "./components/RatePanel.js"
 import AddForm from "./components/AddForm"
@@ -8,9 +9,11 @@ import { useLocalStorage } from "./components/useLocalStorage"
 import { pairs as sampleData } from "./data"
 
 export function App() {
-  const [viewMode, setViewMode] = useLocalStorage("viewMode", true)
+  const [viewMode, setViewMode] = useState(true)
   const [pairs, setPairs] = useLocalStorage("pairs", sampleData)
-  const [editMode, setEditMode] = useLocalStorage("editMode", false)
+  const [editMode, setEditMode] = useState(false)
+
+  console.log("pairs", pairs)
 
   const addPair = (from, to) => {
     setPairs([...pairs, { from: from, to: to, api: "cc" }])
@@ -28,7 +31,7 @@ export function App() {
   return (
     <Wrapper>
       <Container>
-        {viewMode ? (
+        {viewMode &&
           pairs.map((pair, i) => (
             <RatePanel
               key={i}
@@ -37,19 +40,23 @@ export function App() {
               API={APIs[pair.api]}
               editMode={editMode}
             />
-          ))
-        ) : (
-          <AddForm handleSubmit={addPair} />
-        )}
+          ))}
+        {!viewMode && <AddForm handleSubmit={addPair} />}
         <Footer>
           {showControls && (
             <div className="f">
-              <Link onClick={() => setViewMode(!viewMode)}>
-                {viewMode ? "Add" : "Cancel Add"}
-              </Link>
-              <Link onClick={() => setEditMode(!editMode)}>
-                {viewMode ? "Remove" : "Cancel Remove"}
-              </Link>
+              {viewMode && !editMode && (
+                <Link onClick={() => setViewMode(!viewMode)}>Add</Link>
+              )}
+              {viewMode && !editMode && (
+                <Link onClick={() => setEditMode(!editMode)}>Remove</Link>
+              )}
+              {!viewMode && (
+                <Link onClick={() => setViewMode(true)}>Cancel</Link>
+              )}
+              {editMode && (
+                <Link onClick={() => setEditMode(false)}>Cancel</Link>
+              )}
             </div>
           )}
         </Footer>
