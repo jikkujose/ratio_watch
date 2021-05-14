@@ -3,50 +3,59 @@ import styled from "styled-components"
 import RatePanel from "./components/RatePanel.js"
 import AddForm from "./components/AddForm"
 import { ShapeShift, CryptoCompare } from "./utils"
+import { useLocalStorage } from "./components/useLocalStorage"
 
-import { pairs } from "./data"
+import { pairs as sampleData } from "./data"
 
-export default class App extends React.Component {
-  state = {
-    pairs,
-    viewMode: true,
-    APIs: { ss: ShapeShift, cc: CryptoCompare },
+export function App() {
+  const [viewMode, setViewMode] = useLocalStorage("viewMode", true)
+  const [pairs, setPairs] = useLocalStorage("pairs", sampleData)
+  const [editMode, setEditMode] = useLocalStorage("editMode", false)
+
+  const addPair = (from, to) => {
+    setPairs([...pairs, { from: from, to: to, api: "cc" }])
+    setViewMode(!viewMode)
   }
 
-  toggleMode = () => this.setState(s => ({ viewMode: !s.viewMode }))
-
-  addPair = (from, to) => {
-    this.setState(s => ({
-      pairs: s.pairs.concat({ from, to, api: "cc" }),
-      viewMode: true,
-    }))
+  const removePair = index => {
+    console.log("remove", index)
+    setPairs(pairs.filter((pair, _index) => _index != index))
   }
 
-  render() {
-    const { APIs, pairs, viewMode } = this.state
-    const showControls = true
+  let APIs = { ss: ShapeShift, cc: CryptoCompare }
+  let showControls = true
 
-    return (
-      <Wrapper>
-        <Container>
-          {viewMode ? (
-            pairs.map((pair, i) => (
-              <RatePanel key={i} {...pair} API={APIs[pair.api]} />
-            ))
-          ) : (
-            <AddForm handleSubmit={this.addPair} />
-          )}
-          <Footer>
-            {showControls && (
-              <Link onClick={this.toggleMode}>
-                {viewMode ? "Add" : "Cancel"}
+  return (
+    <Wrapper>
+      <Container>
+        {viewMode ? (
+          pairs.map((pair, i) => (
+            <RatePanel
+              key={i}
+              handleRemove={() => removePair(i)}
+              {...pair}
+              API={APIs[pair.api]}
+              editMode={editMode}
+            />
+          ))
+        ) : (
+          <AddForm handleSubmit={addPair} />
+        )}
+        <Footer>
+          {showControls && (
+            <div className="f">
+              <Link onClick={() => setViewMode(!viewMode)}>
+                {viewMode ? "Add" : "Cancel Add"}
               </Link>
-            )}
-          </Footer>
-        </Container>
-      </Wrapper>
-    )
-  }
+              <Link onClick={() => setEditMode(!editMode)}>
+                {viewMode ? "Remove" : "Cancel Remove"}
+              </Link>
+            </div>
+          )}
+        </Footer>
+      </Container>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.div.attrs({
@@ -60,7 +69,7 @@ const Container = styled.div.attrs({
 `
 
 const Link = styled.a.attrs({
-  className: "link b pointer",
+  className: "link b pointer mr2",
 })``
 
 const Footer = styled.div.attrs({
