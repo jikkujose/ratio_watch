@@ -1,9 +1,10 @@
 import { Chart } from "react-google-charts"
+import withHistoryFetch from "./withHistoryFetch"
 
-export function Graph({ ratios }) {
+function Graph({ ratios }) {
   return (
     <Chart
-      width={"600px"}
+      width={"100%"}
       height={"400px"}
       chartType="LineChart"
       loader={<div>Loading Chart</div>}
@@ -12,6 +13,8 @@ export function Graph({ ratios }) {
         colors: ["#357EDD"],
         curveType: "function",
         legend: "none",
+        lineWidth: 0.5,
+        chartArea: { width: "80%", height: "80%" },
         animation: { startup: true, duration: 1000, easing: "out" },
         titleTextStyle: {
           color: "#232323",
@@ -38,3 +41,5 @@ export function Graph({ ratios }) {
     />
   )
 }
+
+export default withHistoryFetch(Graph)
