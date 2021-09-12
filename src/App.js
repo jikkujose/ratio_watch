@@ -5,8 +5,10 @@ import RatePanel from "./components/RatePanel.js"
 import AddForm from "./components/AddForm"
 import { ShapeShift, CryptoCompare } from "./utils"
 import { useLocalStorage } from "./components/useLocalStorage"
+import { Graph } from "./components/Graph"
 
 import { pairs as sampleData } from "./data"
+import { ytd } from "./data"
 
 export function App() {
   const [viewMode, setViewMode] = useState(true)
@@ -31,6 +33,7 @@ export function App() {
   return (
     <Wrapper>
       <Container>
+        <Graph ratios={ytd.payload.ratios} />
         {viewMode &&
           pairs.map((pair, i) => (
             <RatePanel
