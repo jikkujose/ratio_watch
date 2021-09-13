@@ -5,7 +5,7 @@ function Graph({ ratios }) {
   return (
     <Chart
       width={"100%"}
-      height={"400px"}
+      height={"250px"}
       chartType="LineChart"
       loader={<div>Loading Chart</div>}
       data={ratios}
@@ -31,6 +31,7 @@ function Graph({ ratios }) {
           },
         },
         vAxis: {
+          textPosition: "in",
           textStyle: {
             color: "#232323",
             fontName: "Consolas",

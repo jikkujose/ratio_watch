@@ -1,4 +1,5 @@
 import React from "react"
+import { ytd } from "../data"
 
 const ytdAPI = (from, to) =>
   `http://52.137.121.69/ytd?token_id1=${from}&token_id2=${to}`
@@ -10,6 +11,9 @@ export default function withHistoryFetch(Component) {
     }
 
     fetchRate = () => {
+      // TODO: Remove hard coding data
+      this.setState({ ratios: ytd["payload"]["ratios"] })
+
       const { from, to } = this.props
 
       const isLoading = false
