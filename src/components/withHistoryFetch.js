@@ -12,9 +12,6 @@ export default function withHistoryFetch(Component) {
     }
 
     fetchRate = () => {
-      // TODO: Remove hard coding data
-      // this.setState({ ratios: ytd["payload"]["ratios"] })
-
       const { from, to } = this.props
 
       const url = ytdAPI(from, to)

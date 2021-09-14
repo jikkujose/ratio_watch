@@ -1,3 +1,0 @@
-# Todo
-
-- [ ] Get `https` URL
