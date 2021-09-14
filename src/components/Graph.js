@@ -16,10 +16,10 @@ function Graph({ ratios }) {
       loader={<div>Loading Chart</div>}
       data={ratios}
       options={{
-        colors: ["#357EDD"],
+        colors: ["#8FDB97"],
         curveType: "function",
         legend: "none",
-        lineWidth: 0.5,
+        lineWidth: 2,
         chartArea: { width: "80%", height: "80%" },
         animation: { startup: true, duration: 1000, easing: "out" },
         titleTextStyle: {

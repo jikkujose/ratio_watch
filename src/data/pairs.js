@@ -1,20 +1,12 @@
 const pairs = [
   { from: "BTC", to: "USD", api: "cc" },
-  { from: "BTC", to: "INR", api: "cc" },
   { from: "ETH", to: "USD", api: "cc" },
-  { from: "ETH", to: "INR", api: "cc" },
-  { from: "ETC", to: "USD", api: "cc" },
-  { from: "ZEC", to: "USD", api: "cc" },
-  { from: "NMR", to: "USD", api: "cc" },
-  { from: "USD", to: "ZCL", api: "cc" },
-  { from: "USD", to: "DOGE", api: "cc", precision: 4 },
-  { from: "DOGE", to: "USD", api: "cc", precision: 4 },
-  { from: "DOGE", to: "INR", api: "cc", precision: 4 },
-  { from: "ETC", to: "DOGE", api: "cc", precision: 4 },
-  { from: "ETH", to: "ZEC", api: "cc" },
+  { from: "SOL", to: "USD", api: "cc" },
+  { from: "FTM", to: "USD", api: "cc" },
   { from: "BTC", to: "ETH", api: "cc" },
-  { from: "BTC", to: "ETC", api: "cc" },
-  { from: "BTC", to: "ZEC", api: "cc" },
+  { from: "BTC", to: "FTM", api: "cc" },
+  { from: "SOL", to: "FTM", api: "cc" },
+  { from: "ETH", to: "FTM", api: "cc" },
 ]
 
 export default pairs
