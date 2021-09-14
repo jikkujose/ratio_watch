@@ -2,7 +2,7 @@ import React from "react"
 import { ytd } from "../data"
 
 const ytdAPI = (from, to) =>
-  `http://52.137.121.69/ytd?token_id1=${from}&token_id2=${to}`
+  `https://0524-52-137-121-69.ngrok.io/ytd?token_id1=${from}&token_id2=${to}`
 
 export default function withHistoryFetch(Component) {
   return class WrappedComponent extends React.Component {
@@ -12,7 +12,7 @@ export default function withHistoryFetch(Component) {
 
     fetchRate = () => {
       // TODO: Remove hard coding data
-      this.setState({ ratios: ytd["payload"]["ratios"] })
+      // this.setState({ ratios: ytd["payload"]["ratios"] })
 
       const { from, to } = this.props
 
