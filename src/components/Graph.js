@@ -24,7 +24,7 @@ function Graph({ ratios }) {
         animation: { startup: true, duration: 1000, easing: "out" },
         titleTextStyle: {
           color: "#232323",
-          fontName: "Consolas",
+          fontName: "Consolas,monaco,monospace",
           bold: true,
           fontSize: 16,
         },
@@ -32,7 +32,7 @@ function Graph({ ratios }) {
           format: "MMM, YY",
           textStyle: {
             color: "#232323",
-            fontName: "Consolas",
+            fontName: "Consolas,monaco,monospace",
             fontSize: 12,
           },
         },
@@ -40,7 +40,7 @@ function Graph({ ratios }) {
           textPosition: "in",
           textStyle: {
             color: "#232323",
-            fontName: "Consolas",
+            fontName: "Consolas,monaco,monospace",
             fontSize: 12,
           },
         },
