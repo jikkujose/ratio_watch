@@ -49,7 +49,7 @@ function RatePanel({
         >
           {message}
         </Panel>
-        {graphMode && <Graph from="BTC" to="SOL" />}
+        {graphMode && <Graph from={from} to={to} />}
       </div>
     </div>
   )

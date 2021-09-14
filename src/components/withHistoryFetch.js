@@ -2,12 +2,13 @@ import React from "react"
 import { ytd } from "../data"
 
 const ytdAPI = (from, to) =>
-  `https://0524-52-137-121-69.ngrok.io/ytd?token_id1=${from}&token_id2=${to}`
+  `https://jj-api.netlify.app/.netlify/functions/proxy?from=${from}&to=${to}`
 
 export default function withHistoryFetch(Component) {
   return class WrappedComponent extends React.Component {
     state = {
       ratios: [],
+      isLoading: true,
     }
 
     fetchRate = () => {
@@ -16,19 +17,16 @@ export default function withHistoryFetch(Component) {
 
       const { from, to } = this.props
 
-      const isLoading = false
-
-      if (!isLoading) {
-        this.setState(s => ({ rate: null, error: null }))
-      }
-
       const url = ytdAPI(from, to)
       console.log(url)
 
       fetch(url).then(r =>
-        r
-          .json()
-          .then(json => this.setState({ ratios: json["payload"]["ratios"] }))
+        r.json().then(json => {
+          if (json) {
+            this.setState({ ratios: json["payload"]["ratios"] })
+            this.setState({ isLoading: false })
+          }
+        })
       )
     }
 
@@ -41,7 +39,11 @@ export default function withHistoryFetch(Component) {
     }
 
     render() {
-      return <Component {...this.props} {...this.state} />
+      return this.isLoading ? (
+        <div>Loading!</div>
+      ) : (
+        <Component {...this.props} {...this.state} />
+      )
     }
   }
 }

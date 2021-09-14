@@ -2,6 +2,12 @@ import { Chart } from "react-google-charts"
 import withHistoryFetch from "./withHistoryFetch"
 
 function Graph({ ratios }) {
+  const isGraphDataLoaded = !!ratios
+
+  if (!isGraphDataLoaded) {
+    return <div>Waiting for Data</div>
+  }
+
   return (
     <Chart
       width={"100%"}
