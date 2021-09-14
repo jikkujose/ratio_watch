@@ -33,7 +33,6 @@ export function App() {
   return (
     <Wrapper>
       <Container>
-        <Graph from="BTC" to="SOL" />
         {viewMode &&
           pairs.map((pair, i) => (
             <RatePanel

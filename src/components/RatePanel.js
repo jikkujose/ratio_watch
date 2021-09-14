@@ -1,6 +1,8 @@
 import React from "react"
+import { useState } from "react"
 import styled from "styled-components"
 import { lighten } from "polished"
+import Graph from "./Graph"
 
 import withFetch from "./withFetch.js"
 import { color } from "../utils"
@@ -26,6 +28,7 @@ function RatePanel({
 }) {
   const isLoading = !!rate
   const roundedRate = rate && parseFloat(rate).toFixed(precision)
+  const [graphMode, setGraphMode] = useState(false)
 
   let message = isLoading
     ? `1 ${from} = ${roundedRate} ${to}`
@@ -38,9 +41,16 @@ function RatePanel({
   return (
     <div className="flex">
       {editMode && <RemoveButton onClick={handleRemove}>x</RemoveButton>}
-      <Panel onClick={handleClick} isError={!!error} color={theme[api]}>
-        {message}
-      </Panel>
+      <div className="flex-column w-100">
+        <Panel
+          onClick={() => setGraphMode(!graphMode)}
+          isError={!!error}
+          color={theme[api]}
+        >
+          {message}
+        </Panel>
+        {graphMode && <Graph from="BTC" to="SOL" />}
+      </div>
     </div>
   )
 }
