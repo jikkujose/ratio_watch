@@ -2,7 +2,7 @@ import React from "react"
 import { ytd } from "../data"
 
 const ytdAPI = (from, to) =>
-  `https://jj-api.netlify.app/.netlify/functions/proxy?from=${from}&to=${to}`
+  `https://api.ratiowatch.org/ytd?_from=${from}&_to=${to}`
 
 export default function withHistoryFetch(Component) {
   return class WrappedComponent extends React.Component {
